@@ -1,0 +1,58 @@
+header {
+  width: 100%;
+  height: 69px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  background-color: var(--vermelho);
+}
+
+header h1 {
+  font-weight: 700;
+  font-size: 37px;
+  line-height: 43px;
+  color: var(--branco);
+}
+
+.criarQuizz {
+  width: 1051px;
+  height: 181px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+
+  margin: 0 auto;
+  margin-top: 146px;
+
+  border: 1px dashed #D5D5D5;
+  border-radius: 5px;
+}
+
+.criarQuizz p{
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 23.44px;
+  color: var(--cinza-200);
+}
+
+.criarQuizz button{
+  width: 151px;
+  height: 40px;
+
+  cursor: pointer;
+
+  margin-top: 20px;
+
+  font-size: 21px;
+  line-height: 24.61px;
+  color: var(--vermelho);
+  
+  border-radius: 50px;
+  border: 1px dashed #EC362D;
+  background-color: transparent;
+}
