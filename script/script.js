@@ -19,7 +19,7 @@ function renderizarTodosQuizzes() {
 
   quizzes.map((quiz) => (
     ulQuizzes.innerHTML += `
-    <li>
+    <li class="quizz">
      <img src="${quiz.image}" alt="">
       <p>${quiz.title}</p>
     </li>

@@ -57,6 +57,27 @@ header h1 {
   background-color: transparent;
 }
 
+.todosOsQuizzes {
+    width: 1051px;
+    margin: 0 auto;
+}
+
+.quizzes {
+    display: grid; 
+    grid-template-columns: repeat(3, 1fr); 
+    gap: 2rem; 
+}
+
+.quizz {
+    width: 340px;
+    height: 181px;
+}
+
+.quizz img{
+    width: 340px;
+    height: 181px;
+}
+
 .escondida{
     display: none;
 }
