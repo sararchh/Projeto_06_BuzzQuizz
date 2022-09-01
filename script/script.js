@@ -4,7 +4,12 @@ let buscarQuizzes;
 let questoes;
 let respostas;
 
-buscarTodosQuizzes();
+setTimeout(buscarTodosQuizzes,1000);
+
+function buscarSeusQuizzes() {
+  const ulQuizzes = document.querySelector('.seusQuizzes');
+
+}
 
 function buscarTodosQuizzes() {
   const promisse = axios.get(`${urlBase}/quizzes`);
@@ -25,6 +30,7 @@ function renderizarTodosQuizzes() {
     <li class="quizz" onclick="pegaQuiz()">
      <img src="${quiz.image}" alt="">
       <p>${quiz.title}</p>
+      <div class="degradeQuizz"></div>
     </li>
     `
   ));
