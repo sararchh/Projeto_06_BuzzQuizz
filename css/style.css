@@ -57,25 +57,97 @@ header h1 {
   background-color: transparent;
 }
 
+.divHeader {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.buttonAdicionarQuizz{
+    width: 31px;
+    height: 30px;
+    margin: 0 10px;
+}
+
+.listarSeusQuizzes  {
+    width: 1051px;
+
+    margin-top: 146px !important;
+    margin: 0 auto;
+}
+
+.listarSeusQuizzes h2 {
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 23.44px;
+    color: var(--titulo);
+}
+
+.seusQuizzes {
+    display: grid; 
+    grid-template-columns: repeat(3, 1fr); 
+    gap: 16px; 
+}
+
 .todosOsQuizzes {
     width: 1051px;
     margin: 0 auto;
+    margin-top: 90px;
+}
+
+.todosOsQuizzes h2 {
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 23.44px;
+    color: var(--titulo);
+    margin-bottom: 10px;
 }
 
 .quizzes {
     display: grid; 
     grid-template-columns: repeat(3, 1fr); 
-    gap: 2rem; 
+    gap: 16px; 
 }
 
 .quizz {
     width: 340px;
     height: 181px;
+    cursor: pointer;
+
+    border-radius: 5px;
+
+    position: relative;
 }
 
 .quizz img{
     width: 340px;
     height: 181px;
+    object-fit: cover;
+    border-radius: 5px;
+}
+
+.quizz p {
+    font-weight: 400;
+    font-size: 19px;
+    line-height: 22.27px;
+    color: var(--branco);
+
+    z-index: 2;
+
+    position: absolute;
+    bottom: 0;
+    left: 10px;
+}
+
+.degradeQuizz {
+    width: 340px;
+    height: 181px;
+
+    position: absolute;
+    top: 0;
+    left: 0;
+
+    background: linear-gradient(360deg, #00000080 40%, #ffffff00 100%);
 }
 
 .escondida{
