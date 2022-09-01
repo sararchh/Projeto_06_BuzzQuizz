@@ -1,5 +1,8 @@
 let urlBase = 'https://mock-api.driven.com.br/api/v4/buzzquizz';
 let quizzes;
+let buscarQuizzes;
+let questoes;
+let respostas;
 
 buscarTodosQuizzes();
 
@@ -19,10 +22,52 @@ function renderizarTodosQuizzes() {
 
   quizzes.map((quiz) => (
     ulQuizzes.innerHTML += `
-    <li class="quizz">
+    <li class="quizz" onclick="pegaQuiz()">
      <img src="${quiz.image}" alt="">
       <p>${quiz.title}</p>
     </li>
     `
   ));
+}
+
+
+//Buscando um QUIZZ para o usuário responder
+function buscarUmQuizz(){
+  const promisse = axios.get(`${urlBase}/quizzes/ID_DO_QUIZZ`);
+  promisse.then(quizzChegou);
+}
+
+function quizzChegou(resposta) {
+  buscarQuizzes = resposta.data;
+  renderizarPerguntas();
+}
+
+function renderizarPerguntas(){
+  const ulPerguntas = document.querySelector('.respostaQuizz');
+
+  buscarQuizzes.map((issoBanner) =>(
+    ulPerguntas.innerHTML += `
+      <li>
+         <div class="banner">
+             <img src="${issoBanner.image}">
+             <div class="titulo-banner">
+                 <p>
+                    ${issoBanner.title}
+                 </p>
+             </div>
+         </div>
+      </li>
+    `
+    
+  ));
+
+  questoes.map((pergunta) => (
+    ulPerguntas.innerHTML += `
+
+    `
+  ));
+}
+
+function pegaQuiz(){
+  
 }
