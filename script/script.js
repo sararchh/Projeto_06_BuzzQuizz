@@ -69,10 +69,8 @@ function renderizarPerguntas(quizz){
     quizz.questions.forEach((pergunta) => {
       ulPerguntas.innerHTML += `
           <li>
-              <div>
-                 <div>
+              <div class="caixa-pergunta">
                     ${pergunta.title}
-                 </div>
               </div>
           </li>
         `;
@@ -80,10 +78,11 @@ function renderizarPerguntas(quizz){
         // aqui é o answers
     pergunta.answers.forEach((resposta)=> {
       ulPerguntas.innerHTML += `
-      <li>
-          <div>
-             <div>
-                ${resposta.title}
+      <li class="lado">
+          <div class="caixa-resposta">
+             <div class="resposta">
+                <img src="${resposta.image}" />
+                ${resposta.text}
              </div>
           </div>
       </li>

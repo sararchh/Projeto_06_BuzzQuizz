@@ -382,11 +382,43 @@ button a{
 .titulo-banner{
     position: absolute;
     top:150px;
-    left: 525px;
+    left: 625px;
     color: white;
     font-size: 39px;
     font-family: 'Roboto', sans-serif;
     z-index: 1;
+}
+
+.caixa-pergunta{
+    width: 688.16px;
+    height: 137.99px;
+    background-color: red;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.lado{
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.caixa-resposta{
+    margin: 0 auto;
+    width: 688.16px;
+    background-color: green;
+    justify-content: space-between;
+    align-items: center;
+}
+.resposta{
+    display: flex;
+    flex-direction: column;
+} 
+
+.resposta img{
+    width: 329.91px;
+    height: 175.2px;
 }
 
 /* Aqui consta o media query  */
