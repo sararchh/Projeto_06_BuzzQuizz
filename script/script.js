@@ -6,10 +6,14 @@ let tituloDoQuizz;
 let quantidadeDePerguntas;
 let quantidadeDeNiveis;
 
-let buscarQuizzes;
+let buscarQuizz;
 let questoes;
 let respostas;
 
+let tituloNovo;
+let qntPer;
+let qntNiv;
+let imagemNova;
 
 setTimeout(buscarTodosQuizzes,1000);
 
@@ -34,8 +38,8 @@ function renderizarTodosQuizzes() {
 
   quizzes.map((quiz) => (
     ulQuizzes.innerHTML += `
-    <li class="quizz" onclick="pegaQuiz()">
-     <img src="${quiz.image}" alt="">
+    <li class="quizz" onclick="pegaQuiz(${quiz.id})">
+     <img src="${quiz.image}" alt="imagem quizz">
       <p>${quiz.title}</p>
       <div class="degradeQuizz"></div>
     </li>
@@ -43,22 +47,35 @@ function renderizarTodosQuizzes() {
   ));
 }
 
+//Buscando um QUIZZ para o usuário responder
+function pegaQuiz(idQuiz){
+  buscarUmQuizz(idQuiz);
+}
+
+buscarUmQuizz();
+
+function buscarUmQuizz(id){
+  const promisse = axios.get(`${urlBase}/quizzes/${id}`);
+  promisse.then(quizzChegou);
+}
+
+function quizzChegou(resposta) {
+  buscarQuizz = resposta.data;
+  renderizarPerguntas(buscarQuizz);
+}
+
+// chama a tela de criação
 function criarQuizz(){
   
   let criaQuizz = document.querySelector('.paginaInicial');
   criaQuizz.classList.add('escondida');
 
-  // let escondeResposta = document.querySelector('.respostasQuizzes');
-  // escondeResposta.classList.add('escondida');
+  let escondeResposta = document.querySelector('.respostasQuizzes');
+  escondeResposta.classList.add('escondida');
 
   let telaInicial = document.querySelector('.informacoesIniciais');
   telaInicial.classList.remove('escondida');
 }
-
-let tituloNovo;
-let qntPer;
-let qntNiv;
-let imagemNova;
 
 // condições para que o quizz seja aceito
 function irParaPerguntas(){
@@ -123,20 +140,17 @@ function prosseguir(){
     }
 }
 
-//Buscando um QUIZZ para o usuário responder
-function buscarUmQuizz(){
-  const promisse = axios.get(`${urlBase}/quizzes/11204`);
-  promisse.then(quizzChegou);
-}
-
-buscarUmQuizz();
-
-function quizzChegou(resposta) {
-  buscarQuizz = resposta.data;
-  renderizarPerguntas(buscarQuizz);
-}
-
 function renderizarPerguntas(quizz){
+  const divListarSeusQuizzes = document.querySelector('.listarSeusQuizzes');
+  const divCriarQuizz = document.querySelector('.criarQuizz');
+  const divTodosOsQuizzes = document.querySelector('.todosOsQuizzes');
+  const divRespostasQuizzes = document.querySelector('.respostasQuizzes');
+
+  divListarSeusQuizzes.classList.add('escondida');
+  divCriarQuizz.classList.add('escondida');
+  divTodosOsQuizzes.classList.add('escondida');
+  divRespostasQuizzes.classList.remove('escondida');
+
   const ulPerguntas = document.querySelector('.respostaQuizz');
 
   ulPerguntas.innerHTML += `
@@ -155,10 +169,8 @@ function renderizarPerguntas(quizz){
     quizz.questions.forEach((pergunta) => {
       ulPerguntas.innerHTML += `
           <li>
-              <div>
-                 <div>
+              <div class="caixa-pergunta">
                     ${pergunta.title}
-                 </div>
               </div>
           </li>
         `;
@@ -166,10 +178,11 @@ function renderizarPerguntas(quizz){
         // aqui é o answers
     pergunta.answers.forEach((resposta)=> {
       ulPerguntas.innerHTML += `
-      <li>
-          <div>
-             <div>
-                ${resposta.title}
+      <li class="lado">
+          <div class="caixa-resposta">
+             <div class="resposta">
+                <img src="${resposta.image}" />
+                ${resposta.text}
              </div>
           </div>
       </li>
@@ -189,4 +202,3 @@ function renderizarPerguntas(quizz){
 function pegaQuiz(){
   
 }
-
