@@ -78,24 +78,24 @@
       <div class="primeiraPergunta caixaDeCriacao">
         <div class="formuleAPergunta">
           <a>Pergunta 1</a>
-          <input type="text" placeholder="Texto da pergunta">
-          <input type="text" placeholder="Cor de fundo da pergunta">
+          <input class = "tituloPergunta1" type="text" placeholder="Texto da pergunta">
+          <input class="corDeFundo1" type="text" placeholder="Cor de fundo da pergunta">
         </div>
 
         <div class="respostaCorreta">
           <a>Resposta Correta</a>
-          <input type="text" placeholder="Resposta correta">
-          <input type="text" placeholder="URL da imagem">
+          <input class="respostaCerta" type="text" placeholder="Resposta correta">
+          <input class="imagemDaRespostaCerta" type="text" placeholder="URL da imagem">
         </div>
 
         <div class="respostasIncorretas">
           <a>Respostas Incorretas</a>
-          <input type="text" placeholder="Resposta incorreta 1">
-          <input type="text" placeholder="URL da imagem 1">
-          <input class="margem" type="text" placeholder="Resposta incorreta 2">
-          <input type="text" placeholder="URL da imagem 2">
-          <input class="margem" type="text" placeholder="Resposta incorreta 3">
-          <input type="text" placeholder="URL da imagem 3">
+          <input class="respostaIncorreta1" type="text" placeholder="Resposta incorreta 1">
+          <input class="imagemIncorreta1" type="text" placeholder="URL da imagem 1">
+          <input class="margem respostaIncorreta2" type="text" placeholder="Resposta incorreta 2">
+          <input class="imagemIncorreta2" type="text" placeholder="URL da imagem 2">
+          <input class="margem respostaIncorreta3" type="text" placeholder="Resposta incorreta 3">
+          <input class="imagemIncorreta3" type="text" placeholder="URL da imagem 3">
         </div>
       </div>
 
@@ -147,8 +147,9 @@
           <input class="margem" type="text" placeholder="Resposta incorreta 3">
           <input type="text" placeholder="URL da imagem 3">
         </div>
+        
       </div>
-      <button class="irParaNiveis">
+      <button class="irParaNiveis" onclick="irParaNiveis()">
         <a>Prosseguir pra níveis</a>
       </button>
     </div>
@@ -161,10 +162,10 @@
 
       <div class="primeiroNivel formatacaoDeEscolha">
         <a>Nível 1</a>
-        <input type="text" placeholder="Título do nível">
-        <input type="text" placeholder="% de acerto mínima">
-        <input type="text" placeholder="URL da imagem do nível">
-        <input type="text" placeholder="Descrição do nível">
+        <input class="tituloDoNivel1" type="text" placeholder="Título do nível">
+        <input class="porcentagemDoNivel1" type="text" placeholder="% de acerto mínima">
+        <input class="imagemDoNivel1" type="text" placeholder="URL da imagem do nível">
+        <input class="descricaoDoNivel1" type="text" placeholder="Descrição do nível">
       </div>
 
       <div class="segundoNivel formatacaoDeEscolha">
@@ -184,12 +185,24 @@
         <input class="escondida" type="text" placeholder="Descrição do nível">
         <img src="./icones/Vector.png">
       </div>
-      <button class="finalizarQuizz">
+      <button class="finalizarQuizz" onclick="quizzCriado()">
         <a>Finalizar Quizz</a>
       </button>
     </div>
   </div>
 
+  <div class="telaFinal escondida">
+  <div class="sucessoQuizz">
+    <h3>Seu Quizz está pronto!</h3>
+    <div class="recebeImagemDoQuizz">
+      IMAGEM DO QUIZZ
+    </div>
+      <button class="acessarQuizz">
+        <a>Acessar Quizz</a>
+      </button>
+      <a class="voltar">Voltar pra Home</a>
+  </div>
+</div> 
   <!--Respostas-->
   <div class="respostasQuizzes escondida">
     <ul class="respostaQuizz"></ul>
