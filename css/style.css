@@ -208,6 +208,13 @@ input{
     margin-top: 27px;
 }
 
+.primeiraPergunta a{
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 23px;
+    line-height: 27px;
+}
 .respostaCorreta{
     margin-top: 26px;
 }

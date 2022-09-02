@@ -101,36 +101,78 @@ function irParaPerguntas(){
   imagem = document.querySelector('.imagem').value
   quantidadeDePerguntas = document.querySelector('.qntdDePerguntas').value;
   quantidadeDeNiveis = document.querySelector('.qntdDeNiveis').value;
-  if(tituloDoQuizz.length < 20 || tituloDoQuizz.length > 65){
-    alert("O título deve ter entre 20 a 65 letras");
-  }
-  else{
-    tituloNovo = tituloDoQuizz;
-    if(quantidadeDePerguntas < 3){
-      alert('Digite um numero/No minímo 3');
-    }
-    else{
+  // if(tituloDoQuizz.length < 20 || tituloDoQuizz.length > 65){
+  //   alert("O título deve ter entre 20 a 65 letras");
+  // }
+  // else{
+  //   tituloNovo = tituloDoQuizz;
+  //   if(quantidadeDePerguntas < 3){
+  //     alert('Digite um numero/No minímo 3');
+  //   }
+  //   else{
       qntPer = quantidadeDePerguntas;
-      if(quantidadeDeNiveis < 3){
-        alert('Digite um numero/No minímo 3');
-      }
-      else{
-        qntNiv = quantidadeDeNiveis;
-        if(validURL(imagem) === false) {
-          alert('URL inválida');
-        }
-        else{
-         imagemNova = imagem;
+  //     if(quantidadeDeNiveis < 3){
+  //       alert('Digite um numero/No minímo 3');
+  //     }
+  //     else{
+  //       qntNiv = quantidadeDeNiveis;
+  //       if(validURL(imagem) === false) {
+  //         alert('URL inválida');
+  //       }
+  //       else{
+  //        imagemNova = imagem;
+  //        prosseguir();
+  //        renderizarPerguntasDoUsuario();
+  //       }
+  //     } 
+  //   }
+  // }
+
          prosseguir();
-        }
-      } 
-    }
-  }
+         renderizarPerguntasDoUsuario();
   
+}
+
+function renderizarPerguntasDoUsuario(){
+  const perguntasDoUsuario = document.querySelector('.perguntas .criacaoDePerguntas .criacaoPergunta');
+ 
+
+  for(let i = 0; i < qntPer; i++ ){
+    perguntasDoUsuario.innerHTML += `<div class="primeiraPergunta caixaDeCriacao ">
+    <div class="formuleAPergunta">
+      <a>Pergunta ${i + 1}</a>
+      <input class = "tituloPergunta1" type="text" placeholder="Texto da pergunta">
+      <input class="corDeFundo1" type="text" placeholder="Cor de fundo da pergunta">
+    </div>
+
+    <div class="respostaCorreta">
+      <a>Resposta Correta</a>
+      <input class="respostaCerta" type="text" placeholder="Resposta correta">
+      <input class="imagemDaRespostaCerta" type="text" placeholder="URL da imagem">
+    </div>
+
+    <div class="respostasIncorretas">
+      <a>Respostas Incorretas</a>
+      <input class="respostaIncorreta1" type="text" placeholder="Resposta incorreta 1">
+      <input class="imagemIncorreta1" type="text" placeholder="URL da imagem 1">
+      <input class="margem respostaIncorreta2" type="text" placeholder="Resposta incorreta 2">
+      <input class="imagemIncorreta2" type="text" placeholder="URL da imagem 2">
+      <input class="margem respostaIncorreta3" type="text" placeholder="Resposta incorreta 3">
+      <input class="imagemIncorreta3" type="text" placeholder="URL da imagem 3">
+    </div>
+  </div>
+    `
+  }
+
 }
 
 // condições para que a pergunta seja aceita 
 function irParaNiveis(){
+  const criacaoPergunta = document.querySelector('.criacaoPergunta');
+  console.log('sara', criacaoPergunta);
+
+
+
   tituloDaPergunta1 = document.querySelector('.tituloPergunta1').value;
   corDeFundo1 = document.querySelector('.corDeFundo1').value;
   respostaCerta = document.querySelector('.respostaCerta').value;
@@ -146,6 +188,7 @@ function irParaNiveis(){
   }
   else{
     tituloDaPergunta1 = tituloDaPergunta1;
+    console.log(tituloDaPergunta1);
     if(validaCor(corDeFundo1) === false){
       alert('Insira uma cor hexadecimal');
     }
@@ -177,7 +220,7 @@ function irParaNiveis(){
                 imagemIncorreta1 = imagemIncorreta1;
                 imagemIncorreta2 = imagemIncorreta2;
                 imagemIncorreta3 = imagemIncorreta3;
-                prosseguirParaNiveis();
+                // prosseguirParaNiveis();
               }  
           }
         }
@@ -276,8 +319,10 @@ function criaObjetoDoQuizz(){
       }
     ]
   }
-  console.log(quizzCriadoPeloUsuario);
+  let promisse = axios.post("https://mock-api.driven.com.br/api/v4/buzzquizz/quizzes", quizzCriadoPeloUsuario);
+  promisse.then(console.log(promisse));
 }
+
 // Habilita o usuario a prosseguir com a criação de perguntas 
 function prosseguir(){
   if(tituloNovo !== ''){
