@@ -1,3 +1,4 @@
+
 header {
   width: 100%;
   height: 69px;
@@ -57,25 +58,104 @@ header h1 {
   background-color: transparent;
 }
 
+.divHeader {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.buttonAdicionarQuizz{
+    width: 31px;
+    height: 30px;
+    margin: 0 10px;
+}
+
+.listarSeusQuizzes  {
+    width: 1051px;
+
+    padding-top: 146px;
+    margin: 0 auto;
+}
+
+.listarSeusQuizzes h2 {
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 23.44px;
+    color: var(--titulo);
+}
+
+.seusQuizzes {
+    display: grid; 
+    grid-template-columns: repeat(3, 1fr); 
+    gap: 16px; 
+}
+
 .todosOsQuizzes {
     width: 1051px;
     margin: 0 auto;
+    margin-top: 90px;
+}
+
+.todosOsQuizzes h2 {
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 23.44px;
+    color: var(--titulo);
+    margin-bottom: 10px;
 }
 
 .quizzes {
     display: grid; 
     grid-template-columns: repeat(3, 1fr); 
-    gap: 2rem; 
+    gap: 16px; 
+
+    /* display: flex;
+    flex-direction: row;
+    justify-content: center;
+    flex-wrap: wrap; */
 }
 
 .quizz {
     width: 340px;
     height: 181px;
+    cursor: pointer;
+
+    margin: 5px;
+
+    border-radius: 5px;
+
+    position: relative;
 }
 
 .quizz img{
     width: 340px;
     height: 181px;
+    object-fit: cover;
+    border-radius: 5px;
+}
+
+.quizz p {
+    font-weight: 400;
+    font-size: 19px;
+    line-height: 22.27px;
+    color: var(--branco);
+
+    z-index: 2;
+
+    position: absolute;
+    bottom: 0;
+    left: 10px;
+}
+
+.degradeQuizz {
+    width: 340px;
+    height: 181px;
+
+    position: absolute;
+    top: 0;
+    left: 0;
+
+    background: linear-gradient(360deg, #00000080 40%, #ffffff00 100%);
 }
 
 .escondida{
@@ -290,4 +370,32 @@ button a{
 .terceiroNivel a{
     margin-top: 27px;
     margin-left: 10px;
+}
+
+
+/* Aqui consta o media query  */
+@media (max-width: 375px) {
+
+    .quizzes, .seusQuizzes {
+    display: flex ;
+    flex-direction: column;
+    }
+
+    .listarSeusQuizzes, .todosOsQuizzes {
+        width: 100%;
+        padding: 0 10px;
+    }
+
+    .criarQuizz {
+        width: 90%;
+        margin-top: 50px;
+    }
+
+    .listarSeusQuizzes {
+        padding-top: 50px;
+    }
+
+    .divHeader {
+    justify-content: space-between;
+    }
 }
