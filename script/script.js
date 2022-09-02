@@ -27,8 +27,8 @@ function renderizarTodosQuizzes() {
 
   quizzes.map((quiz) => (
     ulQuizzes.innerHTML += `
-    <li class="quizz" onclick="pegaQuiz()">
-     <img src="${quiz.image}" alt="">
+    <li class="quizz" onclick="pegaQuiz(${quiz.id})">
+     <img src="${quiz.image}" alt="imagem quizz">
       <p>${quiz.title}</p>
       <div class="degradeQuizz"></div>
     </li>
@@ -36,14 +36,17 @@ function renderizarTodosQuizzes() {
   ));
 }
 
-
-//Buscando um QUIZZ para o usuário responder
-function buscarUmQuizz(){
-  const promisse = axios.get(`${urlBase}/quizzes/11204`);
-  promisse.then(quizzChegou);
+function pegaQuiz(idQuiz){
+  buscarUmQuizz(idQuiz);
 }
 
 buscarUmQuizz();
+
+//Buscando um QUIZZ para o usuário responder
+function buscarUmQuizz(id){
+  const promisse = axios.get(`${urlBase}/quizzes/${id}`);
+  promisse.then(quizzChegou);
+}
 
 function quizzChegou(resposta) {
   buscarQuizz = resposta.data;
@@ -51,6 +54,16 @@ function quizzChegou(resposta) {
 }
 
 function renderizarPerguntas(quizz){
+  const divListarSeusQuizzes = document.querySelector('.listarSeusQuizzes');
+  const divCriarQuizz = document.querySelector('.criarQuizz');
+  const divTodosOsQuizzes = document.querySelector('.todosOsQuizzes');
+  const divRespostasQuizzes = document.querySelector('.respostasQuizzes');
+
+  divListarSeusQuizzes.classList.add('escondida');
+  divCriarQuizz.classList.add('escondida');
+  divTodosOsQuizzes.classList.add('escondida');
+  divRespostasQuizzes.classList.remove('escondida');
+
   const ulPerguntas = document.querySelector('.respostaQuizz');
 
   ulPerguntas.innerHTML += `
@@ -99,6 +112,3 @@ function renderizarPerguntas(quizz){
 
 }
 
-function pegaQuiz(){
-  
-}
