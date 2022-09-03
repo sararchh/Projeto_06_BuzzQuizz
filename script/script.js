@@ -2,6 +2,7 @@ let urlBase = 'https://mock-api.driven.com.br/api/v4/buzzquizz';
 let quizzes;
 
 let pergunta;
+let quizzesNoArmazenamento;
 
 let infosIniciais;
 let tituloDoQuizz;
@@ -35,9 +36,22 @@ let descricaoDoNivel;
 let porcentagemMinima;
 
 setTimeout(buscarTodosQuizzes, 1000);
+setTimeout(buscarSeusQuizzes, 1000);
 
 function buscarSeusQuizzes() {
+  const listarSeusQuizzes = document.querySelector('.listarSeusQuizzes');
   const ulQuizzes = document.querySelector('.seusQuizzes');
+  const criarQuizz = document.querySelector('.criarQuizz');
+
+  // const promisse = axios.get(`${urlBase}/quizzes/${id}`);
+
+  quizzesNoArmazenamento = localStorage.getItem("_quizzes");
+  console.log('quiz', quizzesNoArmazenamento);
+
+  if (quizzesNoArmazenamento !== undefined) {
+    listarSeusQuizzes.classList.remove('escondida');
+    criarQuizz.classList.add('escondida');
+  }
 
 }
 
@@ -53,9 +67,22 @@ function listaDeQuizzes(response) {
 }
 
 function renderizarTodosQuizzes() {
-  const ulQuizzes = document.querySelector('.quizzes');
+  const meusQuizzes = quizzes.filter((item) => quizzesNoArmazenamento.includes(item.id));
+  const outrosQuizzes = quizzes.filter((item) => !quizzesNoArmazenamento.includes(item.id));
 
-  quizzes.map((quiz) => (
+  const ulQuizzes = document.querySelector('.quizzes');
+  const ulSeusQuizzes = document.querySelector('.seusQuizzes');
+
+  meusQuizzes.map((quiz) => (
+    ulSeusQuizzes.innerHTML += `
+    <li class="quizz">
+     <img src="${quiz.image}" alt="imagem do quiz">
+     <p>${quiz.title}</p>
+   </li>
+    `
+  ));
+
+  outrosQuizzes.map((quiz) => (
     ulQuizzes.innerHTML += `
     <li class="quizz" onclick="pegaQuiz(${quiz.id})">
      <img src="${quiz.image}" alt="imagem quizz">
@@ -98,7 +125,6 @@ function criarQuizz() {
 
 // condições para que o quizz seja aceito
 function irParaPerguntas() {
-
   tituloDoQuizz = document.querySelector('.titulo').value;
   imagem = document.querySelector('.imagem').value
   quantidadeDePerguntas = document.querySelector('.qntdDePerguntas').value;
@@ -133,6 +159,7 @@ function irParaPerguntas() {
 }
 
 function renderizarPerguntasDoUsuario() {
+
   const perguntas = document.querySelector('.perguntas');
   const perguntasDoUsuario = document.querySelector('.perguntas .criacaoDePerguntas .todasAsPerguntas');
 
@@ -273,7 +300,6 @@ function quizzCriado() {
 
 
   for (i = 0; i < todosOsNiveis.length; i++) {
-    console.log('niveis', todosOsNiveis[i])
 
     let titulo = todosOsNiveis[i].querySelector('.tituloDoNivel1').value;
     let imagemNivel = todosOsNiveis[i].querySelector('.imagemDoNivel1').value;
@@ -332,12 +358,14 @@ function criaObjetoDoQuizz() {
   let quizzCriadoPeloUsuario = pergunta;
   let promisse = axios.post("https://mock-api.driven.com.br/api/v4/buzzquizz/quizzes", quizzCriadoPeloUsuario);
   promisse.then((response) => {
-    console.log('response',response.data);
+    console.log('response', response.data);
+
     const { id } = response.data;
+
     const existeMeusQuizzes = localStorage.getItem('_quizzes');
-    console.log('existe', existeMeusQuizzes)
-    if(!existeMeusQuizzes || existeMeusQuizzes == undefined) {
-      localStorage.setItem('_quizzes', JSON.stringify[id]);
+
+    if (!existeMeusQuizzes || existeMeusQuizzes == undefined) {
+      localStorage.setItem('_quizzes', JSON.stringify([id]));
     } else {
       const quizzesParse = JSON.parse(existeMeusQuizzes); //String para json
       localStorage.setItem('_quizzes', JSON.stringify([...quizzesParse, id])) //Seta no localStorage o que ja existe + o id
