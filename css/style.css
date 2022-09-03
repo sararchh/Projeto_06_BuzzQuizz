@@ -404,12 +404,44 @@ button a{
 .recebeImagemDoQuizz{
     height: 266px;
     width: 500px;
-    left: 470px;
-    top: 213px;
     border-radius: 5px;
-    background-color: aqua;
 
+    position: relative;
+    left: 0;
+    top: 0;
 }
+
+.degradeQuizzFinal {
+    height: 266px;
+    width: 500px;
+
+    position: absolute;
+    top: 0;
+    left: 0;
+
+    background: linear-gradient(360deg, #00000080 40%, #ffffff00 100%);
+}
+
+.imagemQuizz{
+    height: 266px;
+    width: 500px;
+    border-radius: 5px;
+}
+
+.recebeImagemDoQuizz p {
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 23.44px;
+    color: var(--branco);
+    margin-bottom: 10px;
+
+    z-index: 2;
+
+    position: absolute;
+    bottom: 0;
+    left: 10px;
+}
+
 .acessarQuizz{
     width: 220.32px;
     height: 44px;
@@ -453,6 +485,10 @@ button a{
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+.buttonHome {
+    background-color: transparent;
 }
 
 .lado{
@@ -503,3 +539,4 @@ button a{
     justify-content: space-between;
     }
 }
+

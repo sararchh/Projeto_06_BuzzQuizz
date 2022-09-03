@@ -3,6 +3,7 @@ let quizzes;
 
 let pergunta;
 let quizzesNoArmazenamento;
+let ultimoIdQuizz;
 
 let infosIniciais;
 let tituloDoQuizz;
@@ -43,7 +44,8 @@ function buscarSeusQuizzes() {
   const ulQuizzes = document.querySelector('.seusQuizzes');
   const criarQuizz = document.querySelector('.criarQuizz');
 
-  quizzesNoArmazenamento = localStorage.getItem("_quizzes");
+  let dataGet = localStorage.getItem("_quizzes");
+  quizzesNoArmazenamento = JSON.parse(dataGet);
 
   if (quizzesNoArmazenamento !== null) {
     listarSeusQuizzes.classList.remove('escondida');
@@ -69,7 +71,7 @@ function renderizarTodosQuizzes() {
 
   if (!quizzesNoArmazenamento) {
     outrosQuizzes = quizzes;
-  } else {t
+  } else {
     meusQuizzes = quizzes.filter((item) => quizzesNoArmazenamento.includes(item.id));
     outrosQuizzes = quizzes.filter((item) => !quizzesNoArmazenamento.includes(item.id));
   }
@@ -105,7 +107,7 @@ function pegaQuiz(idQuiz) {
 buscarUmQuizz();
 
 function buscarUmQuizz(id) {
-  const promisse = axios.get(`${urlBase}/quizzes/${id}`);
+  const promisse = axios.get(`${urlBase}/quizzes/${Number(id)}`);
   promisse.then(quizzChegou);
 }
 
@@ -362,7 +364,6 @@ function criaObjetoDoQuizz() {
   let quizzCriadoPeloUsuario = pergunta;
   let promisse = axios.post("https://mock-api.driven.com.br/api/v4/buzzquizz/quizzes", quizzCriadoPeloUsuario);
   promisse.then((response) => {
-    console.log('response', response.data);
 
     const { id } = response.data;
 
@@ -408,6 +409,34 @@ function finalizaQuizz() {
 
   let fimDoQuizz = document.querySelector('.telaFinal');
   fimDoQuizz.classList.remove('escondida');
+
+  ultimoIdQuizz = quizzesNoArmazenamento.at(-1);
+  console.log('ultimoIdQuizz', ultimoIdQuizz);
+
+  const promisse = axios.get(`${urlBase}/quizzes/${Number(ultimoIdQuizz)}`);
+  promisse.then(dadosQuizzCriado);
+}
+
+function dadosQuizzCriado(response) {
+ let imagemQuiz = response.data.image;
+ let titleQuiz = response.data.title;
+
+  renderizarQuizCriadoPagFinal(imagemQuiz,titleQuiz );
+}
+
+function renderizarQuizCriadoPagFinal(imagemQuiz,titleQuiz) {
+  const divSucessoQuizz = document.querySelector('.sucessoQuizz .recebeImagemDoQuizz');
+
+  divSucessoQuizz.innerHTML += ` 
+  <img class="imagemQuizz" src="${imagemQuiz}" alt="imagem quizz">
+  <p>${titleQuiz}</p>
+  <div class="degradeQuizzFinal"></div>`
+}
+
+
+
+function voltarParaHome() {
+  window.location.reload(true);
 }
 
 function renderizarPerguntas(quizz) {
