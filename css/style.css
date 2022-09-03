@@ -159,7 +159,7 @@ header h1 {
 }
 
 .escondida{
-    display: none;
+    display: none  ;
 }
 
 .criacaoDePerguntas{
@@ -204,17 +204,24 @@ input{
     padding-left: 23px;
 }
 
-.primeiraPergunta{
-    margin-top: 27px;
+.caixaPerguntas {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
 }
 
-.primeiraPergunta a{
+.perguntas a{
     font-family: 'Roboto';
     font-style: normal;
     font-weight: 700;
     font-size: 23px;
     line-height: 27px;
 }
+
+.perguntas { 
+    margin-top: 27px;
+}
+
 .respostaCorreta{
     margin-top: 26px;
 }
@@ -329,13 +336,13 @@ button a{
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.05);
 } */
 
-.primeiroNivel{
+.nivel{
     margin-top: 43px;
     box-sizing: border-box;
     padding-top: 27px;
 }
 
-.primeiroNivel a{
+.nivel a{
     margin-top: 27px;
     margin-left: 10px;
 }
@@ -397,12 +404,44 @@ button a{
 .recebeImagemDoQuizz{
     height: 266px;
     width: 500px;
-    left: 470px;
-    top: 213px;
     border-radius: 5px;
-    background-color: aqua;
 
+    position: relative;
+    left: 0;
+    top: 0;
 }
+
+.degradeQuizzFinal {
+    height: 266px;
+    width: 500px;
+
+    position: absolute;
+    top: 0;
+    left: 0;
+
+    background: linear-gradient(360deg, #00000080 40%, #ffffff00 100%);
+}
+
+.imagemQuizz{
+    height: 266px;
+    width: 500px;
+    border-radius: 5px;
+}
+
+.recebeImagemDoQuizz p {
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 23.44px;
+    color: var(--branco);
+    margin-bottom: 10px;
+
+    z-index: 2;
+
+    position: absolute;
+    bottom: 0;
+    left: 10px;
+}
+
 .acessarQuizz{
     width: 220.32px;
     height: 44px;
@@ -448,18 +487,36 @@ button a{
     align-items: center;
 }
 
+.buttonHome {
+    background-color: transparent;
+}
+
 .lado{
     display: flex;
     flex-wrap: wrap;
 }
-
-.caixa-resposta{
+ul .lado{
+    display: flex;
+    flex-direction: row;
+}
+.liPrincipal{
+    width: 769px;
+    height: 676px;
+    background-color: aqua;
+    margin: 0 auto;
+    margin-bottom: 30px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+}
+/* .caixa-resposta{
     margin: 0 auto;
     width: 688.16px;
     background-color: green;
     justify-content: space-between;
     align-items: center;
-}
+} */
 .resposta{
     display: flex;
     flex-direction: column;
@@ -496,3 +553,4 @@ button a{
     justify-content: space-between;
     }
 }
+
