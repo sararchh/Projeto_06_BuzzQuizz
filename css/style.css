@@ -479,13 +479,14 @@ button a{
 }
 
 .caixa-pergunta{
-    width: 688.16px;
+    width: 709.3px;
     height: 137.99px;
     background-color: red;
     margin: 0 auto;
     display: flex;
     justify-content: center;
     align-items: center;
+    margin-top: 50px;
 }
 
 .buttonHome {
@@ -495,11 +496,42 @@ button a{
 .lado{
     display: flex;
     flex-wrap: wrap;
-    flex-direction: row;
-    background-color: purple;
-    width: 759px;
 }
 
+ul .lado{
+    display: flex;
+    flex-direction: row;
+}
+
+.textoDaResposta{
+    margin-top: 10px;
+    font-family: Roboto;
+    font-size: 20px;
+    font-weight: 700;
+    line-height: 23px;
+    letter-spacing: 0em;
+    text-align: left;
+
+}
+
+.caixa-resposta{
+    justify-content: space-around;
+    align-items: center;
+    margin-top: 10px;
+    
+}
+
+.liPrincipal{
+    width: 769px;
+    height: 676px;
+    background-color: aqua;
+    margin: 0 auto;
+    margin-bottom: 30px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+}
 /* .caixa-resposta{
     margin: 0 auto;
     width: 759.16px;
@@ -509,11 +541,31 @@ button a{
 } */
 /*  */
 
-.resposta img{
-    width: 100px;
+.textoDaResposta{
+    margin-top: 10px;
+    font-family: Roboto;
+    font-size: 20px;
+    font-weight: 700;
+    line-height: 23px;
+    letter-spacing: 0em;
+    text-align: left;
 
-    /* width: 329.91px;
-    height: 175.2px; */
+}
+.caixa-resposta{
+    justify-content: space-around;
+    align-items: center;
+    margin-top: 10px;
+    
+}
+.resposta{
+    
+    display: flex;
+    flex-direction: column;
+} 
+
+.resposta img{
+    width: 329.91px;
+    height: 175.2px;
 }
 
 .opacidade{
@@ -541,6 +593,13 @@ button a{
     width: 50%;
 }
 
+.true{
+    color: green;
+}
+
+.false{
+    color: red;
+}
 /* Aqui consta o media query  */
 @media (max-width: 375px) {
 

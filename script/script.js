@@ -59,6 +59,8 @@ function buscarTodosQuizzes() {
   promisse.then(listaDeQuizzes);
 }
 
+listaDeQuizzes();
+
 function listaDeQuizzes(response) {
   quizzes = response.data;
 
@@ -442,7 +444,9 @@ function renderizarPerguntas(quizz) {
   const divCriarQuizz = document.querySelector('.criarQuizz');
   const divTodosOsQuizzes = document.querySelector('.todosOsQuizzes');
   const divRespostasQuizzes = document.querySelector('.respostasQuizzes');
+  const escondeInformaçõesIniciais = document.querySelector('.informacoesInicais');
 
+  // escondeInformaçõesIniciais.classList.add('escondida');
   divListarSeusQuizzes.classList.add('escondida');
   divCriarQuizz.classList.add('escondida');
   divTodosOsQuizzes.classList.add('escondida');
@@ -466,25 +470,38 @@ function renderizarPerguntas(quizz) {
   //Aqui formata a pergunta, é o questions
   quizz.questions.forEach((pergunta) => {
     ulPerguntas.innerHTML += `
-          <li>
+          <div>
               <div class="caixa-pergunta">
                     ${pergunta.title}
               </div>
-          </li>
+          </div>
         `;
 
     // aqui é o answers
-    pergunta.answers.forEach((resposta) => {
-      ulPerguntas.innerHTML += `
-      <li class="lado">
-          <div class="caixa-resposta">
-             <div class="resposta">
-                <img src="${resposta.image}" />
-                ${resposta.text}
-             </div>
+    pergunta.answers.sort(baralhador).forEach((resposta) => {
+      if(resposta.isCorrectAnswer === true){
+          ulPerguntas.innerHTML += `
+          <div class="lado">
+              <div class="caixa-resposta true " onclick="euEscolhoVoce()">
+                <div class="resposta" >
+                    <img src="${resposta.image}" />
+                    <div class = "textoDaResposta"><span>${resposta.text}</span></div>
+                </div>
+              </div>
           </div>
-      </li>
-    `;
+        `;
+      }else if(resposta.isCorrectAnswer === false){
+        ulPerguntas.innerHTML += `
+          <div class="lado">
+              <div class="caixa-resposta false" onclick="euEscolhoVoce()">
+                <div class="resposta" >
+                    <img src="${resposta.image}" />
+                    <div class = "textoDaResposta"><span>${resposta.text}</span></div>
+                </div>
+              </div>
+          </div>
+        `;
+      }
     }) //fechamento foreach das respostas
 
   }) // fechamento foreach das perguntas
@@ -495,5 +512,9 @@ function renderizarPerguntas(quizz) {
 
   }) //fechamento do foreach level
 
+}
+
+function baralhador() {
+  return Math.random() - 0.5;
 }
 
