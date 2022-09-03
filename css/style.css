@@ -382,7 +382,8 @@ button a{
 .titulo-banner{
     position: absolute;
     top:150px;
-    left: 625px;
+    left: 30%;
+    right: 30%;
     color: white;
     font-size: 39px;
     font-family: 'Roboto', sans-serif;
@@ -402,23 +403,40 @@ button a{
 .lado{
     display: flex;
     flex-wrap: wrap;
+    flex-direction: row;
+    background-color: purple;
+    width: 759px;
 }
 
-.caixa-resposta{
+/* .caixa-resposta{
     margin: 0 auto;
-    width: 688.16px;
+    width: 759.16px;
     background-color: green;
     justify-content: space-between;
     align-items: center;
-}
+} */
 .resposta{
-    display: flex;
-    flex-direction: column;
-} 
+    /* display: flex;
+    flex-direction: column; */
+}
 
 .resposta img{
-    width: 329.91px;
-    height: 175.2px;
+    width: 100px;
+
+    /* width: 329.91px;
+    height: 175.2px; */
+}
+
+.opacidade{
+    opacity: 0.5;
+}
+
+.li-principal{
+    width: 759px;
+    height: 676px;
+    background-color: green;
+    margin: 0 auto;
+    margin-bottom: 10px;
 }
 
 /* Aqui consta o media query  */

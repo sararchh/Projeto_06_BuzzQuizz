@@ -44,13 +44,18 @@ buscarUmQuizz();
 
 //Buscando um QUIZZ para o usuário responder
 function buscarUmQuizz(id){
-  const promisse = axios.get(`${urlBase}/quizzes/${id}`);
+  const promisse = axios.get(`${urlBase}/quizzes/${Number(id)}`);
   promisse.then(quizzChegou);
 }
 
 function quizzChegou(resposta) {
   buscarQuizz = resposta.data;
   renderizarPerguntas(buscarQuizz);
+}
+
+
+function baralhador() {
+  return Math.random() - 0.5;
 }
 
 function renderizarPerguntas(quizz){
@@ -66,49 +71,80 @@ function renderizarPerguntas(quizz){
 
   const ulPerguntas = document.querySelector('.respostaQuizz');
 
+
   ulPerguntas.innerHTML += `
-  <li>
-     <div class="banner">
-         <img src="${quizz.image}">
-         <div class="titulo-banner">
+   <li>
+      <div class="banner">
+          <img src="${quizz.image}">
+          <div class="titulo-banner">
              <p>
-                ${quizz.title}
-             </p>
-         </div>
-     </div>
-  </li>`;
+               ${quizz.title}
+            </p>
+        </div>
+      </div>
+   </li>`;
+
+
+   for(let i = 0; quizz.questions.length; i++){
+
+     ulPerguntas.innerHTML += `
+     <li class="li-principal"> 
+        <div class="caixa-pergunta">
+           ${quizz.questions[i].title}
+        </div>
+     </li>
+     `;
+    }
     
-    //Aqui formata a pergunta, é o questions
-    quizz.questions.forEach((pergunta) => {
-      ulPerguntas.innerHTML += `
-          <li>
-              <div class="caixa-pergunta">
-                    ${pergunta.title}
-              </div>
-          </li>
-        `;
+  const respostasDoUsuario = document.querySelector('.li-principal')
 
-        // aqui é o answers
-    pergunta.answers.forEach((resposta)=> {
-      ulPerguntas.innerHTML += `
-      <li class="lado">
-          <div class="caixa-resposta">
-             <div class="resposta">
-                <img src="${resposta.image}" />
-                ${resposta.text}
-             </div>
-          </div>
-      </li>
-    `;
-    }) //fechamento foreach das respostas
+   for(let j = 0; j < quizz.answers.length; j++){
 
-    }) // fechamento foreach das perguntas
+     respostasDoUsuario.innerHTML += `
+     <div class="resposta">
+         <img src="${quizz.answers[j].image}" />
+         ${quizz.answers[j].text}
+     </div>
+     `
+     console.log(respostasDoUsuario);
+  }
+    //   //Aqui formata a pergunta, é o questions
+    //   quizz.questions.forEach((pergunta) => {
+  //     ulPerguntas.innerHTML += `
+  //         <li class="li-principal">
+  //             <div class="caixa-pergunta">
+  //                   ${pergunta.title}
+  //             </div>
+  //         </li>
+  //       `;
 
-    // aqui é o levels
-    quizz.levels.forEach((level)=>{
-      //aqui voce busca o level e faz o inner
+  //       //Embaralhando as perguntas
+  //       // aqui é o answers
+  //       const adicionaRespostas = document.querySelector('.li-principal');
 
-    }) //fechamento do foreach level
+  //   pergunta.answers.sort(baralhador).forEach((resposta)=> {
+  //     adicionaRespostas.innerHTML += `
+        
+  //            <div class="resposta" onclick="pikachuEuEscolhoVoce(this)">
+  //               <img src="${resposta.image}" />
+  //               ${resposta.text}
+  //            </div>
+  //   `;
+  //   }) //fechamento foreach das respostas
+
+  //   }) // fechamento foreach das perguntas
+
+  //   // aqui é o levels
+  //   quizz.levels.forEach((level)=>{
+  //     //aqui voce busca o level e faz o inner
+
+  //   }) //fechamento do foreach level
+
+}
+
+function pikachuEuEscolhoVoce(seletor){
+    seletor.add('opacidade');
+    console.log(seletor);
 
 }
 
