@@ -159,7 +159,7 @@ header h1 {
 }
 
 .escondida{
-    display: none;
+    display: none  ;
 }
 
 .criacaoDePerguntas{
@@ -204,17 +204,24 @@ input{
     padding-left: 23px;
 }
 
-.pergunta{
-    margin-top: 27px;
+.caixaPerguntas {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
 }
 
-.pergunta a{
+.perguntas a{
     font-family: 'Roboto';
     font-style: normal;
     font-weight: 700;
     font-size: 23px;
     line-height: 27px;
 }
+
+.perguntas { 
+    margin-top: 27px;
+}
+
 .respostaCorreta{
     margin-top: 26px;
 }
