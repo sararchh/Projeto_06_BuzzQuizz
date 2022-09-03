@@ -44,6 +44,8 @@ function buscarTodosQuizzes() {
   promisse.then(listaDeQuizzes);
 }
 
+listaDeQuizzes();
+
 function listaDeQuizzes(response) {
   quizzes = response.data;
 
