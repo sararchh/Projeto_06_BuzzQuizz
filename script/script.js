@@ -433,8 +433,6 @@ function renderizarQuizCriadoPagFinal(imagemQuiz,titleQuiz) {
   <div class="degradeQuizzFinal"></div>`
 }
 
-
-
 function voltarParaHome() {
   window.location.reload(true);
 }

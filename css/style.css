@@ -522,11 +522,13 @@ button a{
     }
 
     .listarSeusQuizzes, .todosOsQuizzes {
+        max-width: 375px;
         width: 100%;
         padding: 0 10px;
     }
 
     .criarQuizz {
+        max-width: 375px;
         width: 90%;
         margin-top: 50px;
     }
@@ -538,5 +540,50 @@ button a{
     .divHeader {
     justify-content: space-between;
     }
+
+    .informacoesDoQuizz, .perguntas, .caixaPerguntas, .criacaoDePerguntas, .todasAsPerguntas {
+        width: 375px;
+        max-width: 375px;
+    }
+
+    .informacoesDoQuizz input {
+        width: 90%;
+    }
+
+    .irParaPerguntas, .irParaNiveis, .todosOsNiveis, .finalizarQuizz {
+        width: 325px;
+    }
+
+    .irParaPerguntas a, .irParaNiveis a, .finalizarQuizz a {
+        font-size: 18px;
+        line-height: 21.09px;
+    }
+
+    .formuleAPergunta, .respostaCorreta, .respostasIncorretas {
+        width: 375px;
+        max-width: 375px;
+    }
+
+    .pergunta {
+        width: 375px;
+    }
+
+    .pergunta input {
+        width: 90%;
+    }
+
+    .nivel {
+        width: 375px;
+    }
+
+    .nivel input {
+        width: 90%;
+    }
+
+    .imagemQuizz, .recebeImagemDoQuizz, .degradeQuizzFinal {
+        max-width: 340px;
+        width: 340px;
+    }
+
 }
 
