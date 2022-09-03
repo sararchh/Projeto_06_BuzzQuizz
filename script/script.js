@@ -81,7 +81,7 @@ function renderizarTodosQuizzes() {
 
   meusQuizzes.map((quiz) => (
     ulSeusQuizzes.innerHTML += `
-    <li class="quizz">
+    <li class="quizz" onclick="pegaQuiz(${quiz.id})">
      <img src="${quiz.image}" alt="imagem do quiz">
      <p>${quiz.title}</p>
    </li>
