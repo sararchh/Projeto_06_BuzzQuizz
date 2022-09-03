@@ -435,8 +435,6 @@ function renderizarQuizCriadoPagFinal(imagemQuiz,titleQuiz) {
   <div class="degradeQuizzFinal"></div>`
 }
 
-
-
 function voltarParaHome() {
   window.location.reload(true);
 }
@@ -455,8 +453,9 @@ function renderizarPerguntas(quizz) {
   divRespostasQuizzes.classList.remove('escondida');
 
   const ulPerguntas = document.querySelector('.respostaQuizz');
+  const cabecalho = document.querySelector('.cabecalho');
 
-  ulPerguntas.innerHTML += `
+  cabecalho.innerHTML += `
   <li>
      <div class="banner">
          <img src="${quizz.image}">
@@ -485,7 +484,7 @@ function renderizarPerguntas(quizz) {
           <div class="caixa-resposta">
              <div class="resposta">
                 <img src="${resposta.image}" />
-                ${resposta.text}
+                <div class = "textoDaResposta">${resposta.text}</div>
              </div>
           </div>
       </div>
