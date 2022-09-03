@@ -46,10 +46,10 @@
       <h2>Todos os Quizzes</h2>
       <ul class="quizzes">
       </ul>
-      
+
     </div>
   </div>
- 
+
   <div class="informacoesIniciais escondida">
     <div class="informacoesBasicas">
       <div class="comeco">
@@ -66,24 +66,24 @@
       </button>
     </div>
 
-  </div> 
+  </div>
 
 
 
-  <div class="perguntas">
+  <div class="perguntas escondida">
     <div class="criacaoDePerguntas">
       <div>
         <a>Crie suas perguntas</a>
       </div>
-      <div class="criacaoPergunta">
-   
+      <div class="todasAsPerguntas">
+
       </div>
-        
-      </div>
-      <button class="irParaNiveis" onclick="irParaNiveis()">
-        <a>Prosseguir pra níveis</a>
-      </button>
+
     </div>
+    <button class="irParaNiveis" onclick="irParaNiveis()">
+      <a>Prosseguir para níveis</a>
+    </button>
+  </div>
   </div>
 
   <div class="niveis escondida">
@@ -91,30 +91,8 @@
 
       <div><a>Agora, decida os níveis<a></div>
 
-      <div class="primeiroNivel formatacaoDeEscolha">
-        <a>Nível 1</a>
-        <input class="tituloDoNivel1" type="text" placeholder="Título do nível">
-        <input class="porcentagemDoNivel1" type="text" placeholder="% de acerto mínima">
-        <input class="imagemDoNivel1" type="text" placeholder="URL da imagem do nível">
-        <input class="descricaoDoNivel1" type="text" placeholder="Descrição do nível">
-      </div>
+      <div class="todosOsNiveis">
 
-      <div class="segundoNivel formatacaoDeEscolha">
-        <a>Nível 2</a>
-        <input class="escondida" type="text" placeholder="Título do nível">
-        <input class="escondida" type="text" placeholder="% de acerto mínima">
-        <input class="escondida" type="text" placeholder="URL da imagem do nível">
-        <input class="escondida" type="text" placeholder="Descrição do nível">
-        <img src="./icones/Vector.png">
-      </div>
-
-      <div class="terceiroNivel formatacaoDeEscolha">
-        <a>Nível 3</a>
-        <input class="escondida" type="text" placeholder="Título do nível">
-        <input class="escondida" type="text" placeholder="% de acerto mínima">
-        <input class="escondida" type="text" placeholder="URL da imagem do nível">
-        <input class="escondida" type="text" placeholder="Descrição do nível">
-        <img src="./icones/Vector.png">
       </div>
       <button class="finalizarQuizz" onclick="quizzCriado()">
         <a>Finalizar Quizz</a>
@@ -123,22 +101,22 @@
   </div>
 
   <div class="telaFinal escondida">
-  <div class="sucessoQuizz">
-    <h3>Seu Quizz está pronto!</h3>
-    <div class="recebeImagemDoQuizz">
-      IMAGEM DO QUIZZ
-    </div>
+    <div class="sucessoQuizz">
+      <h3>Seu Quizz está pronto!</h3>
+      <div class="recebeImagemDoQuizz">
+        IMAGEM DO QUIZZ
+      </div>
       <button class="acessarQuizz">
         <a>Acessar Quizz</a>
       </button>
       <a class="voltar">Voltar pra Home</a>
+    </div>
   </div>
-</div> 
   <!--Respostas-->
   <div class="respostasQuizzes escondida">
     <ul class="respostaQuizz"></ul>
   </div>
-  
+
 </body>
 
 <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
