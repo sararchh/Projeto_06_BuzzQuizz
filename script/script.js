@@ -43,12 +43,9 @@ function buscarSeusQuizzes() {
   const ulQuizzes = document.querySelector('.seusQuizzes');
   const criarQuizz = document.querySelector('.criarQuizz');
 
-  // const promisse = axios.get(`${urlBase}/quizzes/${id}`);
-
   quizzesNoArmazenamento = localStorage.getItem("_quizzes");
-  console.log('quiz', quizzesNoArmazenamento);
 
-  if (quizzesNoArmazenamento !== undefined) {
+  if (quizzesNoArmazenamento !== null) {
     listarSeusQuizzes.classList.remove('escondida');
     criarQuizz.classList.add('escondida');
   }
@@ -67,8 +64,15 @@ function listaDeQuizzes(response) {
 }
 
 function renderizarTodosQuizzes() {
-  const meusQuizzes = quizzes.filter((item) => quizzesNoArmazenamento.includes(item.id));
-  const outrosQuizzes = quizzes.filter((item) => !quizzesNoArmazenamento.includes(item.id));
+  let meusQuizzes = [];
+  let outrosQuizzes = [];
+
+  if (!quizzesNoArmazenamento) {
+    outrosQuizzes = quizzes;
+  } else {t
+    meusQuizzes = quizzes.filter((item) => quizzesNoArmazenamento.includes(item.id));
+    outrosQuizzes = quizzes.filter((item) => !quizzesNoArmazenamento.includes(item.id));
+  }
 
   const ulQuizzes = document.querySelector('.quizzes');
   const ulSeusQuizzes = document.querySelector('.seusQuizzes');
