@@ -449,8 +449,9 @@ function renderizarPerguntas(quizz) {
   divRespostasQuizzes.classList.remove('escondida');
 
   const ulPerguntas = document.querySelector('.respostaQuizz');
+  const cabecalho = document.querySelector('.cabecalho');
 
-  ulPerguntas.innerHTML += `
+  cabecalho.innerHTML += `
   <li>
      <div class="banner">
          <img src="${quizz.image}">

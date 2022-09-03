@@ -513,6 +513,19 @@ button a{
     height: 175.2px;
 }
 
+.respostaQuizz {
+    width: 759px;
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    margin: 0 auto;
+    flex-wrap: wrap;
+}
+
+.lado {
+    width: 50%;
+}
+
 /* Aqui consta o media query  */
 @media (max-width: 375px) {
 
