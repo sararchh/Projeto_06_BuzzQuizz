@@ -126,7 +126,7 @@ function criarQuizz() {
 
   let escondeResposta = document.querySelector('.respostasQuizzes');
   escondeResposta.classList.add('escondida');
-
+  
   let telaInicial = document.querySelector('.informacoesIniciais');
   telaInicial.classList.remove('escondida');
 }
@@ -348,6 +348,7 @@ function quizzCriado() {
 }
 
 function validURL(str) {
+
   var pattern = new RegExp('^(https?:\\/\\/)?' + // protocol
     '((([a-z\\d]([a-z\\d-]*[a-z\\d])*)\\.)+[a-z]{2,}|' + // domain name
     '((\\d{1,3}\\.){3}\\d{1,3}))' + // OR ip (v4) address
@@ -365,6 +366,7 @@ function validaCor(str) {
 function criaObjetoDoQuizz() {
   let quizzCriadoPeloUsuario = pergunta;
   let promisse = axios.post("https://mock-api.driven.com.br/api/v4/buzzquizz/quizzes", quizzCriadoPeloUsuario);
+
   promisse.then((response) => {
 
     const { id } = response.data;
@@ -466,7 +468,7 @@ function renderizarPerguntas(quizz) {
          </div>
      </div>
   </li>`;
-
+  
   //Aqui formata a pergunta, é o questions
   quizz.questions.forEach((pergunta) => {
     ulPerguntas.innerHTML += `
@@ -479,7 +481,13 @@ function renderizarPerguntas(quizz) {
 
     // aqui é o answers
     pergunta.answers.sort(baralhador).forEach((resposta) => {
+      if(resposta.isCorrectAnswer === true){
           ulPerguntas.innerHTML += `
+          <div class="lado">
+              <div class="caixa-resposta true " onclick="euEscolhoVoce()">
+                <div class="resposta" >
+                    <img src="${resposta.image}" />
+                    <div class = "textoDaResposta"><span>${resposta.text}</span></div>
           <div class="lado" onclick="euEscolhoVoce(this)">
               <div class="caixa-resposta">
                 <div class="resposta">
@@ -490,6 +498,18 @@ function renderizarPerguntas(quizz) {
               </div>
           </div>
         `;
+      }else if(resposta.isCorrectAnswer === false){
+        ulPerguntas.innerHTML += `
+          <div class="lado">
+              <div class="caixa-resposta false" onclick="euEscolhoVoce()">
+                <div class="resposta" >
+                    <img src="${resposta.image}" />
+                    <div class = "textoDaResposta"><span>${resposta.text}</span></div>
+                </div>
+              </div>
+          </div>
+        `;
+      }
     }) //fechamento foreach das respostas
 
   }) // fechamento foreach das perguntas
@@ -501,7 +521,8 @@ function renderizarPerguntas(quizz) {
   }) //fechamento do foreach level
 
 }
-
+function baralhador() {
+  return Math.random() - 0.5;
 }
 
 function  euEscolhoVoce(parametro){
