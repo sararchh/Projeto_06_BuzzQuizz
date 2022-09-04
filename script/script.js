@@ -7,7 +7,7 @@ let ultimoIdQuizz;
 
 let infosIniciais;
 let tituloDoQuizz;
-let quantidadeDePerguntas;
+let qtdPerguntas;
 let quantidadeDeNiveis;
 
 let buscarQuizz;
@@ -35,6 +35,11 @@ let porcentagem;
 let imagemDoNivel;
 let descricaoDoNivel;
 let porcentagemMinima;
+
+let acertos = 0;
+let perguntasClicadas = 0;
+let qtdPerguntasQuizzEmProgresso;
+let levelsQuizEmProgresso;
 
 setTimeout(buscarTodosQuizzes, 1000);
 setTimeout(buscarSeusQuizzes, 1000);
@@ -106,8 +111,6 @@ function pegaQuiz(idQuiz) {
   buscarUmQuizz(idQuiz);
 }
 
-buscarUmQuizz();
-
 function buscarUmQuizz(id) {
   const promisse = axios.get(`${urlBase}/quizzes/${Number(id)}`);
   promisse.then(quizzChegou);
@@ -115,6 +118,12 @@ function buscarUmQuizz(id) {
 
 function quizzChegou(resposta) {
   buscarQuizz = resposta.data;
+
+  const { questions, levels } = buscarQuizz;
+
+  qtdPerguntasQuizzEmProgresso = questions.length;
+  levelsQuizEmProgresso = levels;
+
   renderizarPerguntas(buscarQuizz);
 }
 
@@ -420,13 +429,13 @@ function finalizaQuizz() {
 }
 
 function dadosQuizzCriado(response) {
- let imagemQuiz = response.data.image;
- let titleQuiz = response.data.title;
+  let imagemQuiz = response.data.image;
+  let titleQuiz = response.data.title;
 
-  renderizarQuizCriadoPagFinal(imagemQuiz,titleQuiz );
+  renderizarQuizCriadoPagFinal(imagemQuiz, titleQuiz);
 }
 
-function renderizarQuizCriadoPagFinal(imagemQuiz,titleQuiz) {
+function renderizarQuizCriadoPagFinal(imagemQuiz, titleQuiz) {
   const divSucessoQuizz = document.querySelector('.sucessoQuizz .recebeImagemDoQuizz');
 
   divSucessoQuizz.innerHTML += ` 
@@ -467,38 +476,38 @@ function renderizarPerguntas(quizz) {
      </div>
   </li>`;
 
-  //Aqui formata a pergunta, é o questions
+  //PERGUNTA 
   quizz.questions.forEach((pergunta) => {
     ulPerguntas.innerHTML += `
-          <div>
               <div class="caixa-pergunta">
                     ${pergunta.title}
               </div>
-          </div>
         `;
 
-    // aqui é o answers
+    let containerPergunta = `<div class="containerPerguntas"> `;
+
+    //  answers / RESPOSTA
     pergunta.answers.sort(baralhador).forEach((resposta) => {
-          ulPerguntas.innerHTML += `
-          <div class="lado" onclick="euEscolhoVoce(this)">
+      let eCorreto = resposta.isCorrectAnswer;
+      containerPergunta += `
+          <div class="lado ${eCorreto ? 'eaCorreta' : 'naoeCorreta'}"  onclick="euEscolhoVoce(this)">
               <div class="caixa-resposta">
                 <div class="resposta">
                     <img src="${resposta.image}"  />
-                    <div class="textoDaResposta1">${resposta.text}</div>
-                    <div class="textoDaResposta ${resposta.isCorrectAnswer} escondida">${resposta.text}</div>
+                    <p class="textoDaResposta1">${resposta.text}</p>
+                    <p class="textoDaResposta ${resposta.isCorrectAnswer} escondida">${resposta.text}</p>
                 </div>
               </div>
           </div>
         `;
     }) //fechamento foreach das respostas
 
+
+    containerPergunta += `</div>`
+
+    ulPerguntas.innerHTML += `${containerPergunta}`
+
   }) // fechamento foreach das perguntas
-
-  // aqui é o levels
-  quizz.levels.forEach((level) => {
-    //aqui voce busca o level e faz o inner
-
-  }) //fechamento do foreach level
 
 }
 
@@ -506,17 +515,75 @@ function baralhador() {
   return Math.random() - 0.5;
 }
 
-function  euEscolhoVoce(parametro){
-  console.log(parametro);
+function euEscolhoVoce(cardSelecionado) {
+  let containerCards = cardSelecionado.parentNode;
 
-  const esconder = document.querySelectorAll('.textoDaResposta1');
-  console.log(document.querySelectorAll('.textoDaResposta1'));
-  const mostrar = document.querySelectorAll('.textoDaResposta');
-  for(let i = 0; i< esconder.length; i++){
-    esconder[i].classList.add('escondida');
+
+  if (containerCards.classList.contains('jaClicado')) {
+    return;
   }
-  for(let j = 0; j < mostrar.length; j++){
-    mostrar[j].classList.remove('escondida');
+  perguntasClicadas += 1;
+
+  if (cardSelecionado.classList.contains('eaCorreta')) {
+    acertos += 1;
   }
+
+  containerCards.classList.add('jaClicado');
+
+  let array = containerCards.querySelectorAll('.lado');
+
+  array.forEach((card) => {
+    let esconder = card.querySelector('.textoDaResposta1'); //esconder
+    let mostrar = card.querySelector('.textoDaResposta'); //mostrar
+
+    esconder.classList.add('escondida');
+    mostrar.classList.remove('escondida');
+
+    if (card !== cardSelecionado) {
+      card.classList.add('opacidade');
+    }
+  })
+
+  checkQuizzesFinish()
+}
+
+function checkQuizzesFinish() {
+  const containerLevels = document.querySelector('.containerLevels');
+
+  if (perguntasClicadas < qtdPerguntasQuizzEmProgresso) {
+    return;
+  }
+
+  let porcentagemAcertos = ((acertos * 100) / qtdPerguntasQuizzEmProgresso).toFixed(0);
+
+  let nivelDoAcerto = 0;
+  let indexAnterior = 0;
+
+  levelsQuizEmProgresso.forEach((nivel) => {
+    if (porcentagemAcertos < nivel.minValue) {
+      indexAnterior = nivel.minValue;
+      nivelDoAcerto = nivel;
+    } else if (porcentagemAcertos > indexAnterior && porcentagemAcertos < nivel.minValue) {
+      indexAnterior = nivel.minValue;
+      nivelDoAcerto = nivel;
+    } else {
+      nivelDoAcerto = nivel;
+    }
+
+  })
+
+  containerLevels.innerHTML += `
+  <div class="caixa-pergunta">
+    <p>${porcentagemAcertos}% de acerto:${nivelDoAcerto.title} </p>
+  </div>
+
+<div class="infoLevel">
+  <img class="imgLevel" src="${nivelDoAcerto.image}"   alt="imagem do level">
+  <p>${nivelDoAcerto.text}</p>
+</div>
+
+
+    `
+
 }
 
