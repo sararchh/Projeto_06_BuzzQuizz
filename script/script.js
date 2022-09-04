@@ -478,6 +478,8 @@ function renderizarPerguntas(quizz) {
 
   //PERGUNTA 
   quizz.questions.forEach((pergunta) => {
+
+
     ulPerguntas.innerHTML += `
               <div class="caixa-pergunta">
                     ${pergunta.title}
@@ -507,7 +509,7 @@ function renderizarPerguntas(quizz) {
 
     ulPerguntas.innerHTML += `${containerPergunta}`
 
-  }) // fechamento foreach das perguntas
+  }) 
 
 }
 
@@ -549,6 +551,7 @@ function euEscolhoVoce(cardSelecionado) {
 
 function checkQuizzesFinish() {
   const containerLevels = document.querySelector('.containerLevels');
+  containerLevels.classList.remove('escondida');
 
   if (perguntasClicadas < qtdPerguntasQuizzEmProgresso) {
     return;
