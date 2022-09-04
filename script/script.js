@@ -479,29 +479,17 @@ function renderizarPerguntas(quizz) {
 
     // aqui é o answers
     pergunta.answers.sort(baralhador).forEach((resposta) => {
-      if(resposta.isCorrectAnswer === true){
           ulPerguntas.innerHTML += `
-          <div class="lado">
-              <div class="caixa-resposta true " onclick="euEscolhoVoce()">
-                <div class="resposta" >
-                    <img src="${resposta.image}" />
-                    <div class = "textoDaResposta"><span>${resposta.text}</span></div>
+          <div class="lado" onclick="euEscolhoVoce(this)">
+              <div class="caixa-resposta">
+                <div class="resposta">
+                    <img src="${resposta.image}"  />
+                    <div class="textoDaResposta1">${resposta.text}</div>
+                    <div class="textoDaResposta ${resposta.isCorrectAnswer} escondida">${resposta.text}</div>
                 </div>
               </div>
           </div>
         `;
-      }else if(resposta.isCorrectAnswer === false){
-        ulPerguntas.innerHTML += `
-          <div class="lado">
-              <div class="caixa-resposta false" onclick="euEscolhoVoce()">
-                <div class="resposta" >
-                    <img src="${resposta.image}" />
-                    <div class = "textoDaResposta"><span>${resposta.text}</span></div>
-                </div>
-              </div>
-          </div>
-        `;
-      }
     }) //fechamento foreach das respostas
 
   }) // fechamento foreach das perguntas
@@ -516,5 +504,19 @@ function renderizarPerguntas(quizz) {
 
 function baralhador() {
   return Math.random() - 0.5;
+}
+
+function  euEscolhoVoce(parametro){
+  console.log(parametro);
+
+  const esconder = document.querySelectorAll('.textoDaResposta1');
+  console.log(document.querySelectorAll('.textoDaResposta1'));
+  const mostrar = document.querySelectorAll('.textoDaResposta');
+  for(let i = 0; i< esconder.length; i++){
+    esconder[i].classList.add('escondida');
+  }
+  for(let j = 0; j < mostrar.length; j++){
+    mostrar[j].classList.remove('escondida');
+  }
 }
 
