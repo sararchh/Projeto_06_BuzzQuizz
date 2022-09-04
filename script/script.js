@@ -502,8 +502,6 @@ function renderizarPerguntas(quizz) {
 
 }
 
-function baralhador() {
-  return Math.random() - 0.5;
 }
 
 function  euEscolhoVoce(parametro){
