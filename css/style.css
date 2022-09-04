@@ -470,7 +470,8 @@ button a{
 .titulo-banner{
     position: absolute;
     top:150px;
-    left: 625px;
+    left: 30%;
+    right: 30%;
     color: white;
     font-size: 39px;
     font-family: 'Roboto', sans-serif;
@@ -478,17 +479,21 @@ button a{
 }
 
 .caixa-pergunta{
-    width: 688.16px;
+    width: 709.3px;
     height: 137.99px;
     background-color: red;
     margin: 0 auto;
     display: flex;
     justify-content: center;
     align-items: center;
+    margin-top: 50px;
 }
 
 .buttonHome {
     background-color: transparent;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
 }
 
 .lado{
@@ -496,14 +501,67 @@ button a{
     flex-wrap: wrap;
 }
 
+ul .lado{
+    display: flex;
+    flex-direction: row;
+}
+
+.textoDaResposta{
+    margin-top: 10px;
+    font-family: Roboto;
+    font-size: 20px;
+    font-weight: 700;
+    line-height: 23px;
+    letter-spacing: 0em;
+    text-align: left;
+
+}
+
 .caixa-resposta{
+    justify-content: space-around;
+    align-items: center;
+    margin-top: 10px;
+    
+}
+
+.liPrincipal{
+    width: 769px;
+    height: 676px;
+    background-color: aqua;
     margin: 0 auto;
-    width: 688.16px;
+    margin-bottom: 30px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+}
+/* .caixa-resposta{
+    margin: 0 auto;
+    width: 759.16px;
     background-color: green;
     justify-content: space-between;
     align-items: center;
+} */
+/*  */
+
+.textoDaResposta{
+    margin-top: 10px;
+    font-family: Roboto;
+    font-size: 20px;
+    font-weight: 700;
+    line-height: 23px;
+    letter-spacing: 0em;
+    text-align: left;
+
+}
+.caixa-resposta{
+    justify-content: space-around;
+    align-items: center;
+    margin-top: 10px;
+    
 }
 .resposta{
+    
     display: flex;
     flex-direction: column;
 } 
@@ -511,6 +569,71 @@ button a{
 .resposta img{
     width: 329.91px;
     height: 175.2px;
+}
+
+.opacidade{
+    opacity: 0.5;
+}
+
+.li-principal{
+    width: 759px;
+    height: 676px;
+    background-color: green;
+    margin: 0 auto;
+    margin-bottom: 10px;
+}
+
+.respostaQuizz {
+    width: 759px;
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    margin: 0 auto;
+    flex-wrap: wrap;
+}
+
+.containerPerguntas {
+    width: 709.3px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+
+    background-color: var(--branco);
+}
+
+.lado {
+    width: 50%;
+}
+
+.true{
+    color: green;
+}
+
+.false{
+    color: red;
+}
+
+.opacidade {
+    opacity: 0.5;
+}
+
+.containerLevels {
+    width: 759px;
+    height: 430px;
+    margin: 0 auto;
+
+    background-color: var(--branco);
+}
+
+.imgLevel {
+    width: 364px;
+    height: 273px;
+}
+
+.infoLevel {
+    display: flex;
+    justify-content: space-between;
 }
 
 /* Aqui consta o media query  */
@@ -522,11 +645,13 @@ button a{
     }
 
     .listarSeusQuizzes, .todosOsQuizzes {
+        max-width: 375px;
         width: 100%;
         padding: 0 10px;
     }
 
     .criarQuizz {
+        max-width: 375px;
         width: 90%;
         margin-top: 50px;
     }
@@ -538,5 +663,50 @@ button a{
     .divHeader {
     justify-content: space-between;
     }
+
+    .informacoesDoQuizz, .perguntas, .caixaPerguntas, .criacaoDePerguntas, .todasAsPerguntas {
+        width: 375px;
+        max-width: 375px;
+    }
+
+    .informacoesDoQuizz input {
+        width: 90%;
+    }
+
+    .irParaPerguntas, .irParaNiveis, .todosOsNiveis, .finalizarQuizz {
+        width: 325px;
+    }
+
+    .irParaPerguntas a, .irParaNiveis a, .finalizarQuizz a {
+        font-size: 18px;
+        line-height: 21.09px;
+    }
+
+    .formuleAPergunta, .respostaCorreta, .respostasIncorretas {
+        width: 375px;
+        max-width: 375px;
+    }
+
+    .pergunta {
+        width: 375px;
+    }
+
+    .pergunta input {
+        width: 90%;
+    }
+
+    .nivel {
+        width: 375px;
+    }
+
+    .nivel input {
+        width: 90%;
+    }
+
+    .imagemQuizz, .recebeImagemDoQuizz, .degradeQuizzFinal {
+        max-width: 340px;
+        width: 340px;
+    }
+
 }
 
