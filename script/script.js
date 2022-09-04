@@ -490,6 +490,7 @@ function renderizarPerguntas(quizz) {
               </div>
           </div>
         `;
+        console.log('.resposta');
     }) //fechamento foreach das respostas
 
   }) // fechamento foreach das perguntas
@@ -512,10 +513,10 @@ function  euEscolhoVoce(parametro){
   const esconder = document.querySelectorAll('.textoDaResposta1');
   console.log(document.querySelectorAll('.textoDaResposta1'));
   const mostrar = document.querySelectorAll('.textoDaResposta');
-  for(let i = 0; i< esconder.length; i++){
+  for(let i = 0; i< (esconder.length/3); i++){
     esconder[i].classList.add('escondida');
   }
-  for(let j = 0; j < mostrar.length; j++){
+  for(let j = 0; j < (mostrar.length/3); j++){
     mostrar[j].classList.remove('escondida');
   }
 }
