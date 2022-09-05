@@ -426,6 +426,7 @@ function finalizaQuizz() {
 
   const promisse = axios.get(`${urlBase}/quizzes/${Number(ultimoIdQuizz)}`);
   promisse.then(dadosQuizzCriado);
+  dadosQuizzCriado();
 }
 
 function dadosQuizzCriado(response) {
@@ -478,8 +479,6 @@ function renderizarPerguntas(quizz) {
 
   //PERGUNTA 
   quizz.questions.forEach((pergunta) => {
-
-
     ulPerguntas.innerHTML += `
               <div class="caixa-pergunta">
                     ${pergunta.title}
@@ -584,7 +583,6 @@ function checkQuizzesFinish() {
   <img class="imgLevel" src="${nivelDoAcerto.image}"   alt="imagem do level">
   <p>${nivelDoAcerto.text}</p>
 </div>
-
 
     `
 
