@@ -422,10 +422,10 @@ function finalizaQuizz() {
   fimDoQuizz.classList.remove('escondida');
 
   ultimoIdQuizz = quizzesNoArmazenamento.at(-1);
-  console.log('ultimoIdQuizz', ultimoIdQuizz);
 
   const promisse = axios.get(`${urlBase}/quizzes/${Number(ultimoIdQuizz)}`);
   promisse.then(dadosQuizzCriado);
+  dadosQuizzCriado();
 }
 
 function dadosQuizzCriado(response) {
