@@ -11,6 +11,8 @@ header {
   background-color: var(--vermelho);
 }
 
+
+
 header h1 {
   font-weight: 700;
   font-size: 37px;
@@ -460,6 +462,10 @@ button a{
     margin-bottom: 10px;
 }
 
+li{
+    list-style-type: none;
+}
+
 .banner img{
     width: 100%;
     height:247px;
@@ -472,6 +478,9 @@ button a{
     top:150px;
     left: 30%;
     right: 30%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     color: white;
     font-size: 39px;
     font-family: 'Roboto', sans-serif;
@@ -481,7 +490,7 @@ button a{
 .caixa-pergunta{
     width: 709.3px;
     height: 137.99px;
-    background-color: red;
+    color: white;
     margin: 0 auto;
     display: flex;
     justify-content: center;
@@ -493,6 +502,7 @@ button a{
     background-color: transparent;
     margin: 0 auto;
     display: flex;
+    margin-top: 25px;
 
     width: 100vw;
     display: flex;
@@ -503,6 +513,8 @@ button a{
 .lado{
     display: flex;
     flex-wrap: wrap;
+    background: #FFFFFF;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.05);
 }
 
 ul .lado{
@@ -556,8 +568,18 @@ ul .lado{
     line-height: 23px;
     letter-spacing: 0em;
     text-align: left;
-
 }
+
+.textoDaResposta1{
+    margin-top: 10px;
+    font-family: Roboto;
+    font-size: 20px;
+    font-weight: 700;
+    line-height: 23px;
+    letter-spacing: 0em;
+    text-align: left;
+}
+
 .caixa-resposta{
     justify-content: space-around;
     align-items: center;
@@ -565,7 +587,7 @@ ul .lado{
     
 }
 .resposta{
-    
+    margin-left: 12px;
     display: flex;
     flex-direction: column;
 } 
@@ -609,6 +631,8 @@ ul .lado{
 
 .lado {
     width: 50%;
+    display: flex;
+    justify-content:space-between;
 }
 
 .true{
@@ -628,7 +652,9 @@ ul .lado{
     height: 430px;
     margin: 0 auto;
 
+    margin-bottom: 50px;
     background-color: var(--branco);
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.05);
 }
 
 .imgLevel {
@@ -636,11 +662,37 @@ ul .lado{
     height: 273px;
 }
 
+.legendaDaResposta{
+    display: flex;
+    flex-wrap: wrap;
+    margin-left: 21px;
+}
+
+/* .legendaDaResposta p{
+    margin-left: 21px;
+
+} */
+
 .infoLevel {
+    margin-left: 21px;
+    width: 680px;
+    background: #FFFFFF;
     display: flex;
     justify-content: space-between;
 }
 
+.buttonReiniciaQuizz{
+    margin-top: 40px;
+    margin: 0 auto;
+    display: flex;
+    justify-content:center;
+    align-items: center;
+}
+
+.vermelho{
+    background-color: var(--vermelho);
+    margin-bottom: 10px;
+}
 /* Aqui consta o media query  */
 @media (max-width: 375px) {
 
