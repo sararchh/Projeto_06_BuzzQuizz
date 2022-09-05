@@ -439,7 +439,7 @@ function renderizarQuizCriadoPagFinal(imagemQuiz, titleQuiz) {
   const divSucessoQuizz = document.querySelector('.sucessoQuizz .recebeImagemDoQuizz');
 
   divSucessoQuizz.innerHTML += ` 
-  <img class="imagemQuizz" src="${imagemQuiz}" alt="imagem quizz">
+  <div><img class="imagemQuizz" src="${imagemQuiz}" alt="imagem quizz">
   <p>${titleQuiz}</p>
   <div class="degradeQuizzFinal"></div>`
 }
@@ -464,6 +464,8 @@ function renderizarPerguntas(quizz) {
   const ulPerguntas = document.querySelector('.respostaQuizz');
   const cabecalho = document.querySelector('.cabecalho');
 
+  window.scroll(10000, 0);
+  
   cabecalho.innerHTML += `
   <li>
      <div class="banner">
@@ -481,7 +483,7 @@ function renderizarPerguntas(quizz) {
 
 
     ulPerguntas.innerHTML += `
-              <div class="caixa-pergunta">
+              <div style="background-color: ${pergunta.color};" class="caixa-pergunta">
                     ${pergunta.title}
               </div>
         `;
@@ -549,9 +551,10 @@ function euEscolhoVoce(cardSelecionado) {
   checkQuizzesFinish()
 }
 
+
 function checkQuizzesFinish() {
-  const containerLevels = document.querySelector('.containerLevels');
-  containerLevels.classList.remove('escondida');
+ let containerLevels = document.querySelector('.containerLevels');
+  // containerLevels.classList.remove('escondida');
 
   if (perguntasClicadas < qtdPerguntasQuizzEmProgresso) {
     return;
@@ -571,21 +574,54 @@ function checkQuizzesFinish() {
       nivelDoAcerto = nivel;
     } else {
       nivelDoAcerto = nivel;
+      containerLevels.classList.remove('escondida');
     }
 
   })
 
   containerLevels.innerHTML += `
-  <div class="caixa-pergunta">
+  <div class="caixa-pergunta vermelho">
     <p>${porcentagemAcertos}% de acerto:${nivelDoAcerto.title} </p>
   </div>
 
 <div class="infoLevel">
   <img class="imgLevel" src="${nivelDoAcerto.image}"   alt="imagem do level">
-  <p>${nivelDoAcerto.text}</p>
+  <div class = "legendaDaResposta"><p>${nivelDoAcerto.text}</p></dvi>
 </div>
 
 
     `
+
+}
+
+
+
+function reiniciaQuizz(){
+  acertos = 0;
+  perguntasClicadas = 0;
+  let level = document.querySelector('.containerLevels');
+  level.classList.add('escondida');
+  level.innerHTML = ``;
+  window.scroll(10000, 0);
+
+  let respostas = document.querySelectorAll('.containerPerguntas');
+  for(let i = 0; respostas.length > i; i++){
+    respostas[i].classList.remove('jaClicado');
+  }
+  
+  let respostas2 = document.querySelectorAll('.containerPerguntas .lado');
+  for(let i = 0; respostas2.length > i; i++){
+    respostas2[i].classList.remove('opacidade');
+  }
+
+  let rebelde = document.querySelectorAll('.containerPerguntas .lado .caixa-resposta .resposta .textoDaResposta1');
+  for(let i = 0; rebelde.length > i; i++){
+    rebelde[i].classList.remove('escondida');
+  }
+
+  let rebelde2 = document.querySelectorAll('.containerPerguntas .lado .caixa-resposta .resposta .textoDaResposta');
+  for(let i = 0; rebelde.length > i; i++){
+    rebelde2[i].classList.add('escondida');
+  }
 
 }
