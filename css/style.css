@@ -491,6 +491,13 @@ button a{
 
 .buttonHome {
     background-color: transparent;
+    margin: 0 auto;
+    display: flex;
+
+    width: 100vw;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .lado{
@@ -589,6 +596,17 @@ ul .lado{
     flex-wrap: wrap;
 }
 
+.containerPerguntas {
+    width: 709.3px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    margin-bottom: 30px;
+
+    background-color: var(--branco);
+}
+
 .lado {
     width: 50%;
 }
@@ -600,6 +618,29 @@ ul .lado{
 .false{
     color: red;
 }
+
+.opacidade {
+    opacity: 0.5;
+}
+
+.containerLevels {
+    width: 709.3px;
+    height: 430px;
+    margin: 0 auto;
+
+    background-color: var(--branco);
+}
+
+.imgLevel {
+    width: 364px;
+    height: 273px;
+}
+
+.infoLevel {
+    display: flex;
+    justify-content: space-between;
+}
+
 /* Aqui consta o media query  */
 @media (max-width: 375px) {
 

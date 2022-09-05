@@ -28,7 +28,7 @@
       <button onclick="criarQuizz()">Criar Quizz</button>
     </div>
 
-    <div class="listarSeusQuizzes escondida">
+    <div class="listarSeusQuizzes">
       <div class="divHeader">
         <h2>Seus Quizzes</h2>
         <button class="buttonAdicionarQuizz" onclick="criarQuizz()"> <img src="./icones/add.png"
@@ -104,11 +104,11 @@
     <div class="sucessoQuizz">
       <h3>Seu Quizz está pronto!</h3>
       <div class="recebeImagemDoQuizz">
-        
+
       </div>
-      <button class="acessarQuizz">
+      <!-- <button class="acessarQuizz">
         <a>Acessar Quizz</a>
-      </button>
+      </button> -->
 
       <button class="buttonHome" onclick="voltarParaHome()">
         <a class="voltar">Voltar para Home</a>
@@ -117,13 +117,19 @@
   </div>
   <!--Respostas-->
   <div class="respostasQuizzes escondida">
-    <div class="cabecalho">
+    <div class="cabecalho"> </div>
+
+    <div class="respostaQuizz">
 
     </div>
 
-    <ul class="respostaQuizz">
+    <div class="containerLevels escondida">
       
-    </ul>
+    </div>
+
+    <div class="buttonHome" onclick="voltarParaHome()">
+      <a class="voltar">Voltar para Home</a>
+    </div>
   </div>
 
 </body>
